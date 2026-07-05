@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #F6F1E7;
+  color: #0B1C33;
+}
+
+.font-serif { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+.font-mono-editorial { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+@layer base {
+  :root {
+    --background: 40 47% 94%;
+    --foreground: 214 65% 12%;
+    --card: 40 47% 96%;
+    --card-foreground: 214 65% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 65% 12%;
+    --primary: 214 65% 12%;
+    --primary-foreground: 40 47% 96%;
+    --secondary: 40 30% 88%;
+    --secondary-foreground: 214 65% 12%;
+    --muted: 40 25% 90%;
+    --muted-foreground: 214 15% 40%;
+    --accent: 210 68% 42%;
+    --accent-foreground: 40 47% 96%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 47% 96%;
+    --border: 30 15% 82%;
+    --input: 30 15% 82%;
+    --ring: 214 65% 12%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
+
+/* Editorial helpers */
+.eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4A5A72;
+}
+.hairline { height: 1px; background: #D8CFBE; }
+.ink { color: #0B1C33; }
+.ink-muted { color: #4A5A72; }
+.paper { background: #F6F1E7; }
+.paper-alt { background: #EFE7D5; }
+.paper-dark { background: #0B1C33; color: #F6F1E7; }
+.rule { border-top: 1px solid #D8CFBE; }
+.rule-strong { border-top: 1px solid #0B1C33; }
+
+.editorial-heading { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.02em; line-height: 1.02; }
+
+.grain::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(11,28,51,0.05) 1px, transparent 1px);
+  background-size: 3px 3px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.link-underline { position: relative; display: inline-block; }
+.link-underline::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 1px; background: currentColor; transform: scaleX(0.15); transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.link-underline:hover::after { transform: scaleX(1); }
+
+.card-hover { transition: transform 0.5s ease, box-shadow 0.5s ease; }
+.card-hover:hover { transform: translateY(-4px); }
+
+.fade-in { animation: fadeUp 0.9s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px);} to { opacity: 1; transform: none;} }
+
+.marquee { display: flex; gap: 3rem; animation: marquee 40s linear infinite; }
+@keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
